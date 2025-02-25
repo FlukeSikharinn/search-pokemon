@@ -3,6 +3,9 @@ const nextConfig = {
   images: {
     domains: ['img.pokemondb.net'],
   },
+  experimental: {
+    appDir: true,
+  },
 };
 
 module.exports = nextConfig;
