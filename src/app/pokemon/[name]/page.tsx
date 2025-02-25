@@ -5,13 +5,13 @@ import PokemonList from "@/components/PokemonList";
 import Search from "@/components/Search";
 import { NextPage } from 'next';
 
-interface PokemonPageProps {
+type PokemonPageProps = {
   params: {
     name: string;
   };
-}
+};
 
-const PokemonPage: NextPage<PokemonPageProps> = async ({ params }) => {
+export default async function PokemonPage({ params }: PokemonPageProps) {
   const client = createApolloClient();
   let pokemon: Pokemon | undefined = undefined;
   let error: Error | undefined = undefined;
