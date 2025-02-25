@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import { Pokemon } from '@/types/pokemon';
-import cry from "../../public/images/cry.png"
 import Image from "next/image";
 import { useState } from "react";
 
@@ -14,11 +13,11 @@ type PokemonListProps = {
 
 const PokemonList: React.FC<PokemonListProps> = ({ loading, error, pokemon }) => {
   const router = useRouter();
-  const [loading2 , setLoading2] = useState(loading);
+  const [loading2 , setLoading2] = useState(false);
 
   const handleEvolutionClick = (evolutionName: string) => {
     setLoading2(true)
-    router.push(`/pokemon/${evolutionName}`);
+    setTimeout(() => router.push(`/pokemon/${evolutionName}`), 100);
   };
 
   const emoji: Record<string, string> = {
@@ -49,10 +48,9 @@ const PokemonList: React.FC<PokemonListProps> = ({ loading, error, pokemon }) =>
         <div className="w-[95%] md:w-[50%] lg:w-[35%] px-10 border border-white p-4 shadow-xl bg-white rounded-3xl">
           <div className="flex flex-col justify-center items-center mt-5">
             <Image 
-              src={cry} 
-              width={250} 
-              height={250} 
-              alt="logo-iamge" 
+              src="/images/cry.png"
+              width={250} height={250} 
+              alt="crying pokemon" 
               className="w-[50vw] object-contain mr-2 rounded-2xl" 
             />
             { 
