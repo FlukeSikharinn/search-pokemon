@@ -46,7 +46,7 @@ const PokemonList: React.FC<PokemonListProps> = ({ loading, error, pokemon }) =>
   if(!loading2 && !pokemon){
     return (
       <div className="flex justify-center items-center mt-3">
-        <div className="w-[93%] md:w-[50%] lg:w-[35%] px-10 border border-white p-4 shadow-xl bg-white rounded-3xl">
+        <div className="w-[100%] md:w-[50%] lg:w-[35%] px-10 border border-white p-4 shadow-xl bg-white rounded-3xl">
           <div className="flex flex-col justify-center items-center mt-5">
             <Image 
               src={cry} 
@@ -79,7 +79,7 @@ const PokemonList: React.FC<PokemonListProps> = ({ loading, error, pokemon }) =>
 
   return (
     <div className="flex justify-center items-center mt-3">
-      <div className="w-[93%] md:w-[50%] lg:w-[35%] px-10 border border-white p-4 shadow-xl bg-white rounded-3xl">
+      <div className="w-[100%] md:w-[50%] lg:w-[35%] px-10 border border-white p-4 shadow-xl bg-white rounded-3xl">
         <div>
           <div className="flex flex-col justify-center items-center mt-5">
             {
