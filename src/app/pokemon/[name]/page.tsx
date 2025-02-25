@@ -17,18 +17,13 @@ export default async function PokemonPage({ params }: { params: { name: string }
 
     pokemon = data.pokemon;
   } catch (err) {
-    error = new Error("Failed to fetch Pokémon");
+    error = err instanceof Error ? err : new Error("Failed to fetch Pokémon");
   }
 
   return (
     <div className="p-4">
       <Search />
-      {
-          pokemon && (
-              <PokemonList loading={false} error={error || undefined} pokemon={pokemon} />
-          )
-      }
-      
+      <PokemonList loading={false} error={error || undefined} pokemon={pokemon} />
     </div>
   );
 }

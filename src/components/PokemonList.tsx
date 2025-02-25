@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { Pokemon } from '@/types/pokemon';
 import cry from "../../public/images/cry.png"
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type PokemonListProps = {
   loading: boolean;
@@ -50,6 +50,8 @@ const PokemonList: React.FC<PokemonListProps> = ({ loading, error, pokemon }) =>
           <div className="flex flex-col justify-center items-center mt-5">
             <Image 
               src={cry} 
+              width={250} 
+              height={250} 
               alt="logo-iamge" 
               className="w-[50vw] object-contain mr-2 rounded-2xl" 
             />
@@ -92,7 +94,11 @@ const PokemonList: React.FC<PokemonListProps> = ({ loading, error, pokemon }) =>
               )
               : pokemon ? (
                 <>
-                  <img src={pokemon.image} alt={pokemon.name} 
+                  <img 
+                    src={pokemon.image} 
+                    alt={pokemon.name} 
+                    width={250} 
+                    height={250} 
                     className="
                       w-[250px] 
                       h-[250px] 
