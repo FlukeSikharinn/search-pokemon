@@ -5,53 +5,30 @@ import PokemonList from "@/components/PokemonList";
 import Search from "@/components/Search";
 
 interface PokemonPageProps {
-  pokemon: Pokemon;
-  error: string | null;
+  params: Promise<{ name: string }>;
 }
 
-export async function generateStaticParams() {
-  // Return static params to generate paths ahead of time
-  // You can fetch the available pokemon names and return as a list of params
-  return [
-    { name: "bulbasaur" },
-    { name: "charmander" },
-    { name: "squirtle" },
-    // Add more Pokémon names dynamically here if needed
-  ];
-}
-
-export async function generateMetadata({ params }: { params: { name: string } }) {
+async function getPokemon(name: string): Promise<{ pokemon?: Pokemon; error?: Error }> {
   const client = createApolloClient();
-  let pokemon: Pokemon | null = null;
-  let error: string | null = null;
-
   try {
     const { data } = await client.query<{ pokemon: Pokemon }>({
       query: GET_POKEMON,
-      variables: { name: params.name },
+      variables: { name },
     });
-    pokemon = data.pokemon;
-  } catch (err) {
-    error = err instanceof Error ? err.message : "Failed to fetch Pokémon";
+    return { pokemon: data.pokemon };
+  } catch (error) {
+    return { error: error instanceof Error ? error : new Error("Failed to fetch Pokémon") };
   }
-
-  return {
-    title: pokemon ? pokemon.name : "Pokémon not found",
-    description: error || "Details of the selected Pokémon",
-  };
 }
 
-const PokemonPage: React.FC<PokemonPageProps> = ({ pokemon, error }) => {
+export default async function PokemonPage({ params }: PokemonPageProps) {
+  const { name } = await params;
+  const { pokemon, error } = await getPokemon(name);
+
   return (
     <div className="p-4">
       <Search />
-      {error ? (
-        <div>Error: {error}</div>
-      ) : (
-        <PokemonList pokemon={pokemon} />
-      )}
+      <PokemonList error={error} pokemon={pokemon} />
     </div>
   );
-};
-
-export default PokemonPage;
+}
