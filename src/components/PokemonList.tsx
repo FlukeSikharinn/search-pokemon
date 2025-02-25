@@ -168,7 +168,7 @@ const PokemonList: React.FC<PokemonListProps> = ({ loading, error, pokemon }) =>
                            bg-gray-200 
                            font-semibold px-5
                           text-gray-700 
-                            text-xl py-1 
+                            md:text-xl py-1 
                             rounded-full 
                             mt-3
                           " 
