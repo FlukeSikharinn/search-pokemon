@@ -50,14 +50,14 @@ const Search = () => {
             <Image 
               src={logo} 
               alt="logo-iamge" 
-              className="w-[35vw] object-contain mr-2" 
+              className="w-[35vw] object-contain mr-2 transition duration-300 hover:scale-105" 
             />
           </Link>
           <Link href="/" passHref>
             <Image 
               src={ball} 
               alt="ball-iamge" 
-              className="w-[12vw] object-contain mt-3" 
+              className="w-[12vw] object-contain mt-3 transition duration-300 hover:scale-105" 
             />
           </Link>
         </div>

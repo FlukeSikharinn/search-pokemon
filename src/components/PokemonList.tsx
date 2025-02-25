@@ -21,6 +21,28 @@ const PokemonList: React.FC<PokemonListProps> = ({ loading, error, pokemon }) =>
     router.push(`/pokemon/${evolutionName}`);
   };
 
+  const emoji: Record<string, string> = {
+    "Electric": "⚡",
+    "Fight": "🥊",
+    "Fighting": "🥊",
+    "Flying": "🕊️",
+    "Fly": "🕊️",
+    "Rock": "🗿",
+    "Fire": "🔥",
+    "Grass": "🌿",
+    "Poison": "🧪",
+    "Psychic": "🤯",
+    "Ghost": "👻",
+    "Steel": "🦾",
+    "Water": "🌊",
+    "Ice": "🧊",
+    "Ground": "🏜️",
+    "Bug": "🦗",
+    "Dragon": "🐉",
+    "Fairy": "🧚",
+    "Wood": "🧚",
+  }
+
   if(!loading2 && !pokemon){
     return (
       <div className="flex justify-center items-center mt-3">
@@ -152,6 +174,7 @@ const PokemonList: React.FC<PokemonListProps> = ({ loading, error, pokemon }) =>
                           " 
                           style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)' }}
                         >
+                          <span className="mr-1">{ emoji[type] || "❓"}</span>
                           {type}
                         </button>
                       ))}
