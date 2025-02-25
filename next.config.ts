@@ -1,11 +1,11 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+
+
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
   images: {
-    domains: ['img.pokemondb.net'],
-  },
-  experimental: {
-    appDir: true,
+    domains: ["img.pokemondb.net"],
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
