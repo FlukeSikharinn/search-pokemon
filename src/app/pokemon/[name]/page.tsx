@@ -3,7 +3,6 @@ import { createApolloClient } from "@/apollo/apolloClient";
 import { Pokemon } from "@/types/pokemon";
 import PokemonList from "@/components/PokemonList";
 import Search from "@/components/Search";
-import { NextPage } from 'next';
 
 interface PokemonPageProps {
   params: {
@@ -11,7 +10,7 @@ interface PokemonPageProps {
   };
 }
 
-const PokemonPage: NextPage<PokemonPageProps> = async ({ params }) => {
+const PokemonPage: React.FC<PokemonPageProps> = async ({ params }) => {
   const client = createApolloClient();
   let pokemon: Pokemon | undefined = undefined;
   let error: Error | undefined = undefined;
