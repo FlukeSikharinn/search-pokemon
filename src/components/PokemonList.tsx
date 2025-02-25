@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { Pokemon } from '@/types/pokemon';
 import cry from "../../public/images/cry.png"
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type PokemonListProps = {
   loading: boolean;
