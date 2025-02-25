@@ -6,12 +6,11 @@ import Image from "next/image";
 import { useState } from "react";
 
 type PokemonListProps = {
-  loading: boolean;
   error?: Error | null;
   pokemon?: Pokemon;
 };
 
-const PokemonList: React.FC<PokemonListProps> = ({ loading, error, pokemon }) => {
+const PokemonList: React.FC<PokemonListProps> = ({ error, pokemon }) => {
   const router = useRouter();
   const [loading2 , setLoading2] = useState(false);
 
@@ -42,7 +41,7 @@ const PokemonList: React.FC<PokemonListProps> = ({ loading, error, pokemon }) =>
     "Wood": "🧚",
   }
 
-  if(!loading2 && !pokemon){
+  if(!pokemon){
     return (
       <div className="flex justify-center items-center mt-3">
         <div className="w-[95%] md:w-[50%] lg:w-[35%] px-10 border border-white p-4 shadow-xl bg-white rounded-3xl">
@@ -92,15 +91,13 @@ const PokemonList: React.FC<PokemonListProps> = ({ loading, error, pokemon }) =>
               )
               : pokemon ? (
                 <>
-                  <img 
-                    src={pokemon.image} 
-                    alt={pokemon.name} 
-                    width={250} 
-                    height={250} 
-                    className="
-                      w-[250px] 
-                      h-[250px] 
-                    " 
+                  <Image
+                    src={pokemon.image}
+                    alt={pokemon.name}
+                    width={250}
+                    height={250}
+                    className="w-[250px] h-[250px]"
+                    priority
                   />
                   <h2 className="text-5xl font-bold mt-6 mb-5 text-blue-500 " style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}>{pokemon.name}</h2>
                 </>

@@ -23,7 +23,7 @@ export default async function PokemonPage({ params }: { params: { name: string }
   return (
     <div className="p-4">
       <Search />
-      <PokemonList loading={false} error={error || undefined} pokemon={pokemon} />
+      <PokemonList error={error || undefined} pokemon={pokemon} />
     </div>
   );
 }

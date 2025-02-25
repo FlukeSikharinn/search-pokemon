@@ -17,19 +17,19 @@ describe('PokemonList Component', () => {
   });
 
   it('Test Bulbasaur', async () => {
-    render(<PokemonList loading={false} error={null} pokemon={bulbasaur} />);
+    render(<PokemonList error={null} pokemon={bulbasaur} />);
     expect(screen.getByText('Bulbasaur')).toBeInTheDocument();
     expect(screen.getByText('Grass')).toBeInTheDocument();
   });
 
   it('Test Charmander', async () => {
-    render(<PokemonList loading={false} error={null} pokemon={charmander} />);
+    render(<PokemonList error={null} pokemon={charmander} />);
     expect(screen.getByText('Charmander')).toBeInTheDocument();
     expect(screen.getByText('Fire')).toBeInTheDocument();
   });
 
   it('Test Squirtle', async () => {
-    render(<PokemonList loading={false} error={null} pokemon={squirtle} />);
+    render(<PokemonList error={null} pokemon={squirtle} />);
     expect(screen.getByText('Squirtle')).toBeInTheDocument();
     expect(screen.getByText('Water')).toBeInTheDocument();
   });
