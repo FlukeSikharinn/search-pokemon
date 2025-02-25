@@ -3,14 +3,15 @@ import { createApolloClient } from "@/apollo/apolloClient";
 import { Pokemon } from "@/types/pokemon";
 import PokemonList from "@/components/PokemonList";
 import Search from "@/components/Search";
+import { NextPage } from 'next';
 
-export async function generateMetadata({ params }: { params: { name: string } }) {
-  return {
-    title: `Pokemon: ${params.name}`,
+interface PokemonPageProps {
+  params: {
+    name: string;
   };
 }
 
-export default async function PokemonPage({ params }: { params: { name: string } }) {
+const PokemonPage: NextPage<PokemonPageProps> = async ({ params }) => {
   const client = createApolloClient();
   let pokemon: Pokemon | undefined = undefined;
   let error: Error | undefined = undefined;
@@ -32,4 +33,6 @@ export default async function PokemonPage({ params }: { params: { name: string }
       <PokemonList error={error || undefined} pokemon={pokemon} />
     </div>
   );
-}
+};
+
+export default PokemonPage;

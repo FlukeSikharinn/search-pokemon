@@ -1,0 +1,15 @@
+{
+    "builds": [
+      {
+        "src": "src/app/**/*.ts",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/pokemon/:name",
+        "dest": "/src/app/pokemon/[name]/page.tsx"
+      }
+    ]
+  }
+  
