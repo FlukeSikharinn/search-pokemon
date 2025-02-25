@@ -4,13 +4,17 @@ import { Pokemon } from "@/types/pokemon";
 import PokemonList from "@/components/PokemonList";
 import Search from "@/components/Search";
 
-export async function generateMetadata({ params }: { params: { name: string } }) {
+type PokemonPageProps = {
+  params: { name: string };
+};
+
+export async function generateMetadata({ params }: PokemonPageProps) {
   return {
     title: `Pokemon: ${params.name}`,
   };
 }
 
-export default async function PokemonPage({ params }: { params: { name: string } }) {
+export default async function PokemonPage({ params }: PokemonPageProps) {
   const client = createApolloClient();
   let pokemon: Pokemon | undefined = undefined;
   let error: Error | undefined = undefined;
