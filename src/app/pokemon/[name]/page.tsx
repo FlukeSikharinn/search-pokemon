@@ -5,7 +5,7 @@ import PokemonList from "@/components/PokemonList";
 import Search from "@/components/Search";
 
 interface PokemonPageProps {
-  params: { name: string };
+  params: Promise<{ name: string }>;
 }
 
 async function getPokemon(name: string): Promise<{ pokemon?: Pokemon; error?: Error }> {
