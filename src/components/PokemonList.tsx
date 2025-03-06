@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 type PokemonListProps = {
-  error?: Error | null;
+  error?: Error | undefined;
   pokemon?: Pokemon;
 };
 
