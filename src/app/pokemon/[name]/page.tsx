@@ -14,7 +14,7 @@ async function getPokemon(name: string): Promise<{ pokemon?: Pokemon; error?: Er
     const { data } = await client.query<{ pokemon: Pokemon }>({
       query: GET_POKEMON,
       variables: { name },
-      fetchPolicy: "cache-first"
+      fetchPolicy: "network-only"
     });
     return { pokemon: data.pokemon };
   } catch {
