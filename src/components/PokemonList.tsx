@@ -6,8 +6,8 @@ import Image from "next/image";
 import { useState } from "react";
 
 type PokemonListProps = {
-  error?: Error | undefined;
-  pokemon?: Pokemon;
+  error?: Error | null;
+  pokemon?: Pokemon | null;
 };
 
 const PokemonList: React.FC<PokemonListProps> = ({ error, pokemon }) => {
