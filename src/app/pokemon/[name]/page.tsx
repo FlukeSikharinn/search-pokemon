@@ -31,6 +31,7 @@ async function getAllPokemons(): Promise<Pokemon[]> {
     // console.log(data)
     return data.pokemons;
   } catch (error) {
+    console.error("Error fetching pokemons:", error);
     return [];
   }
 }
