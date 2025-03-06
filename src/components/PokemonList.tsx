@@ -7,7 +7,7 @@ import { useState } from "react";
 
 type PokemonListProps = {
   error?: Error | null;
-  pokemon?: Pokemon | null;
+  pokemon?: Pokemon;
 };
 
 const PokemonList: React.FC<PokemonListProps> = ({ error, pokemon }) => {
