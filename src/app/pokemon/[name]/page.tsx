@@ -8,7 +8,7 @@ interface PokemonPageProps {
   params: { name: string };
 }
 
-async function getPokemon(name: string): Promise<{ pokemon?: Pokemon | null ; error?: Error | null }> {
+async function getPokemon(name: string): Promise<{ pokemon?: Pokemon; error?: Error }> {
   const client = createApolloClient();
   try {
     const { data } = await client.query<{ pokemon: Pokemon }>({
@@ -16,9 +16,9 @@ async function getPokemon(name: string): Promise<{ pokemon?: Pokemon | null ; er
       variables: { name },
       fetchPolicy: "cache-first"
     });
-    return { pokemon: data.pokemon , error:null };
+    return { pokemon: data.pokemon };
   } catch (error) {
-    return { pokemon: null , error: new Error("Failed to fetch Pokemon") };
+    return { error: new Error("Failed to fetch Pokemon") };
   }
 }
 
