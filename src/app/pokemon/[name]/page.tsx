@@ -31,7 +31,7 @@ async function getAllPokemons(): Promise<Pokemon[]> {
     // console.log(data)
     return data.pokemons;
   } catch (error) {
-    console.error("Error fetching pokemons:", error);
+    // console.error("Error fetching pokemons:", error);
     return [];
   }
 }
@@ -46,7 +46,7 @@ export async function generateStaticParams() {
     // console.log(pokemons.map((pokemon) => ({ name: pokemon.name })))
     return pokemons.map((pokemon) => ({ name: pokemon.name }));
   } catch (error) {
-    console.error("Error fetching pokemons:", error);
+    // console.error("Error fetching pokemons:", error);
     return [];
   }
 }
