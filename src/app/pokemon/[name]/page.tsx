@@ -1,11 +1,11 @@
-import { GET_POKEMON } from "@/graphql/queries";
+import { GET_POKEMON, GET_ALL_POKEMON } from "@/graphql/queries";
 import { createApolloClient } from "@/apollo/apolloClient";
 import { Pokemon } from "@/types/pokemon";
 import PokemonList from "@/components/PokemonList";
 import Search from "@/components/Search";
 
 interface PokemonPageProps {
-  params: Promise<{ name: string }>;
+  params: { name: string };
 }
 
 async function getPokemon(name: string): Promise<{ pokemon?: Pokemon; error?: Error }> {
@@ -14,10 +14,39 @@ async function getPokemon(name: string): Promise<{ pokemon?: Pokemon; error?: Er
     const { data } = await client.query<{ pokemon: Pokemon }>({
       query: GET_POKEMON,
       variables: { name },
+      fetchPolicy: "cache-first"
     });
     return { pokemon: data.pokemon };
   } catch (error) {
-    return { error: error instanceof Error ? error : new Error("Failed to fetch Pokémon") };
+    return { error: new Error("Failed to fetch Pokemon") };
+  }
+}
+
+async function getAllPokemons(): Promise<Pokemon[]> {
+  const client = createApolloClient();
+  try {
+    const { data } = await client.query<{ pokemons: Pokemon[] }>({
+      query: GET_ALL_POKEMON,
+    });
+    // console.log(data)
+    return data.pokemons;
+  } catch (error) {
+    return [];
+  }
+}
+
+export async function generateStaticParams() {
+  try {
+    const pokemons = await getAllPokemons();
+    if (!pokemons || pokemons.length === 0) {
+      console.error("No Pokemon data found.");
+      return [];
+    }
+    // console.log(pokemons.map((pokemon) => ({ name: pokemon.name })))
+    return pokemons.map((pokemon) => ({ name: pokemon.name }));
+  } catch (error) {
+    console.error("Error fetching pokemons:", error);
+    return [];
   }
 }
 
